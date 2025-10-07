@@ -6,22 +6,19 @@
   <title>Show, Don't Tell Practice Tool</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --bg: #0b0f16; --panel: #111827; --ink: #e6edf3; --muted: #9ca3af;
-      --red: #f87171; --yellow: #fbbf24; --green: #34d399; --pink: #ec4899; --purple: #a855f7; --blue: #3b82f6;
-    }
-    body { background: var(--bg); color: var(--ink); font-family: Inter, system-ui, sans-serif; }
-    .panel { background: var(--panel); border: 1px solid #1f2937; }
-    .box { min-height: 3.2rem; line-height: 1.5; outline: none; white-space: pre-wrap; border: 1px solid #1f2937; }
-    .box[contenteditable="true"]:empty:before { content: 'Rewrite here…'; color: #6b7280; }
-    mark { background: none; color: inherit; }
-    .hl-passive { background: rgba(248,113,113,.18); box-shadow: inset 0 -2px 0 0 var(--red); }
-    .hl-stop    { background: rgba(251,191,36,.18); box-shadow: inset 0 -2px 0 0 var(--yellow); }
-    .hl-filler  { background: rgba(236,72,153,.18); box-shadow: inset 0 -2px 0 0 var(--pink); }
-    .hl-basic   { background: rgba(52,211,153,.18); box-shadow: inset 0 -2px 0 0 var(--green); }
-    .hl-filter  { background: rgba(168,85,247,.18); box-shadow: inset 0 -2px 0 0 var(--purple); }
-    .hl-badstart{ background: rgba(59,130,246,.18); box-shadow: inset 0 -2px 0 0 var(--blue); }
-    .chip { font-size: .75rem; padding: .125rem .5rem; border-radius: .5rem; }
+    :root { --bg:#0b0f16; --panel:#111827; --ink:#e6edf3; --muted:#9ca3af; --red:#f87171; --yellow:#fbbf24; --green:#34d399; --pink:#ec4899; --purple:#a855f7; --blue:#3b82f6; }
+    body { background:var(--bg); color:var(--ink); font-family:Inter, system-ui, sans-serif; }
+    .panel { background:var(--panel); border:1px solid #1f2937; }
+    .box { min-height:3.6rem; line-height:1.5; outline:none; white-space:pre-wrap; border:1px solid #1f2937; border-radius:.6rem; }
+    .box[contenteditable="true"]:empty:before { content: 'Rewrite here…'; color:#6b7280; }
+    mark { background:none; color:inherit; }
+    .hl-passive { background:rgba(248,113,113,.18); box-shadow: inset 0 -2px 0 0 var(--red); }
+    .hl-stop    { background:rgba(251,191,36,.18); box-shadow: inset 0 -2px 0 0 var(--yellow); }
+    .hl-filler  { background:rgba(236,72,153,.18); box-shadow: inset 0 -2px 0 0 var(--pink); }
+    .hl-basic   { background:rgba(52,211,153,.18); box-shadow: inset 0 -2px 0 0 var(--green); }
+    .hl-filter  { background:rgba(168,85,247,.18); box-shadow: inset 0 -2px 0 0 var(--purple); }
+    .hl-badstart{ background:rgba(59,130,246,.18); box-shadow: inset 0 -2px 0 0 var(--blue); }
+    .chip { font-size:.75rem; padding:.125rem .5rem; border-radius:.5rem; }
     .chip-red{background:#7f1d1d22;border-bottom:2px solid var(--red);} 
     .chip-yellow{background:#7a620a22;border-bottom:2px solid var(--yellow);} 
     .chip-green{background:#0a7a4a22;border-bottom:2px solid var(--green);} 
@@ -29,7 +26,7 @@
     .chip-purple{background:#3e0a7a22;border-bottom:2px solid var(--purple);} 
     .chip-blue{background:#0a3a7a22;border-bottom:2px solid var(--blue);} 
     .chip-neutral{background:#334155;border-bottom:2px solid #475569;}
-    .mono{font-variant-numeric: tabular-nums}
+    .mono{font-variant-numeric:tabular-nums}
   </style>
 </head>
 <body class="min-h-screen">
@@ -41,12 +38,7 @@
   <main class="max-w-5xl mx-auto p-4 space-y-6">
     <section class="panel p-4 rounded-xl">
       <h2 class="text-lg font-semibold mb-2">How to Use This Tool</h2>
-      <p class="text-sm text-slate-300 leading-relaxed">
-        Good writers <em>show</em> feelings and actions instead of just <em>telling</em> them. Rather than
-        “He was angry,” try: “His jaw clenched and he slammed the book shut.” Keep verbs strong, watch
-        for weak sentence starters (The/It/He/She…), and avoid filler like <em>very</em> and <em>really</em>.
-        Rewrite each TELL into a vivid SHOW.
-      </p>
+      <p class="text-sm text-slate-300 leading-relaxed">Good writers <em>show</em> feelings and actions instead of just <em>telling</em> them. Rather than “He was angry,” try: “His jaw clenched and he slammed the book shut.” Keep verbs strong, watch for weak sentence starters (The/It/He/She…), and avoid filler like <em>very</em> and <em>really</em>. Rewrite each TELL into a vivid SHOW.</p>
     </section>
 
     <section id="exemplar" class="panel p-4 rounded-xl">
@@ -58,6 +50,7 @@
   </main>
 
   <script>
+    // ---------------- Data ----------------
     const EXEMPLARS = [
       "TELL: She was scared. SHOW: Her hands trembled as she fumbled with the keys, breath catching in her throat.",
       "TELL: He was tired. SHOW: His eyelids drooped, and each step felt heavier than the last.",
@@ -75,28 +68,36 @@
       "She was sad.","He was angry.","It was cold.","They were excited.","The dog was scared.","He was tired.","She felt nervous.","It was dark.","The food was delicious.","He was embarrassed.","She was happy.","The teacher was kind.","The house was spooky.","The movie was boring.","He was proud.","She felt guilty.","It was raining.","They were late.","The garden was beautiful.","He was strong.","She was weak.","The baby was cute.","The room was small.","The cake was sweet.","The car was fast.","He was confused.","She was surprised.","It was quiet.","He felt brave.","They were afraid.","She was clever.","He was rude.","It was dangerous.","The day was long.","The ocean was calm.","The boy was lonely.","The wind was strong.","She was shocked.","He was lazy.","It was peaceful.","They were hopeful.","The book was interesting.","The storm was scary.","She was jealous.","He was funny.","It was hot.","The test was easy.","They were lost.","He was generous.","The night was cold."
     ];
 
+    // ------------- Highlight Word Lists -------------
     const STOP = new Set(["a","an","the","and","or","but","so","to","of","in","on","at","for","with","as","by","from","that","this","these","those","it","is","are","was","were","be","been","being"]);
     const FILLER = new Set(["very","really","just","quite","basically","actually","literally","kind","sort"]);
     const BASIC = new Set(["good","bad","big","small","get","got","went","make","made","nice","thing"]);
     const FILTER_TOKENS = new Set(["think","feel","believe","opinion","seems","appears"]);
     const BADSTART = new Set(["the","it","a","an","he","she","his","her","this","these","those","they","then","there"]);
 
+    // Passive indicator tokens + common contractions
     const PASSIVE_TOKENS = new Set([
       "was","were","is","are","has","had","have","be","been","being","did","does",
-      "'s","'re","'m","'ve","'d","wasn't","weren't","isn't","aren't","hasn't","haven't","hadn't","didn't","doesn't","can't","couldn't","shouldn't","wouldn't","mustn't",
+      // straight-apostrophe contractions
+      "wasn't","weren't","isn't","aren't","hasn't","haven't","hadn't","didn't","doesn't","can't","couldn't","shouldn't","wouldn't","mustn't",
+      // curly-apostrophe contractions
       "wasn’t","weren’t","isn’t","aren’t","hasn’t","haven’t","hadn’t","didn’t","doesn’t","can’t","couldn’t","shouldn’t","wouldn’t","mustn’t"
     ]);
 
-    function isPassiveWord(w){
-      const norm = w.toLowerCase().replace(/[’]/g, "'");
+    function isPassiveWord(token){
+      const norm = token.toLowerCase().replace(/[’‘]/g, "'");
       if (PASSIVE_TOKENS.has(norm)) return true;
+      // Generic n't handling (e.g., wasn't, didn't)
       if (norm.endsWith("n't")) {
         const base = norm.slice(0, -3);
         if (["was","were","is","are","has","have","had","did","does","can","could","should","would","must"].includes(base)) return true;
       }
+      // Handle suffix contractions like she's, they're, I'm, we've, I'd
+      if (/'(s|re|m|ve|d)$/.test(norm)) return true;
       return false;
     }
 
+    // ---------------- Utils ----------------
     function random(arr,n){ return [...arr].sort(()=>0.5-Math.random()).slice(0,n); }
     function countWords(str){ return (str.trim().match(/\b\w+\b/g) || []).length; }
     function escapeHtml(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c])); }
@@ -109,23 +110,33 @@
       return true;
     }
 
+    // Build highlighted HTML with priorities (passive > badstart > others)
     function highlightAll(raw){
-      const normalized = raw.replace(/[’]/g, "'");
-      let out = escapeHtml(normalized);
-      out = out.replace(/\b[\w']+\b/g, (m, idx) => {
-        const w = m.toLowerCase().replace(/[’]/g, "'");
+      const src = raw.replace(/[’‘]/g, "'");
+      let out = '';
+      let last = 0;
+      const re = /\b[\w]+(?:'\w+)?\b/g; // keep contractions together
+      let m;
+      while ((m = re.exec(src)) !== null) {
+        const token = m[0];
+        const start = m.index;
+        if (start > last) out += escapeHtml(src.slice(last, start));
+        const w = token.toLowerCase();
         let cls = null;
         if (STOP.has(w)) cls = 'hl-stop';
         if (BASIC.has(w)) cls = 'hl-basic';
         if (FILLER.has(w)) cls = 'hl-filler';
         if (FILTER_TOKENS.has(w)) cls = 'hl-filter';
-        if (BADSTART.has(w) && isSentenceStart(raw, idx)) cls = 'hl-badstart';
-        if (isPassiveWord(w)) cls = 'hl-passive';
-        return cls ? `<mark class="${cls}">${m}</mark>` : m;
-      });
+        if (BADSTART.has(w) && isSentenceStart(src, start)) cls = 'hl-badstart';
+        if (isPassiveWord(w)) cls = 'hl-passive'; // highest priority
+        out += cls ? `<mark class="${cls}">${escapeHtml(token)}</mark>` : escapeHtml(token);
+        last = start + token.length;
+      }
+      if (last < src.length) out += escapeHtml(src.slice(last));
       return out;
     }
 
+    // Caret helpers so cursor stays in place while highlighting
     function getTextOffset(root, range){ const pre = range.cloneRange(); pre.selectNodeContents(root); pre.setEnd(range.startContainer, range.startOffset); return pre.toString().length; }
     function setCaretAt(root, offset){ const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null); let node, count = 0; while ((node = walker.nextNode())) { const len = node.nodeValue.length; if (count + len >= offset) { const r = document.createRange(); r.setStart(node, offset - count); r.collapse(true); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); return; } count += len; } }
 
@@ -144,7 +155,7 @@
       const block = document.createElement('div'); block.className = 'panel p-4 rounded-xl';
       const tellEl = document.createElement('p'); tellEl.textContent = 'TELL: ' + tell; tellEl.className = 'mb-2 text-slate-300';
 
-      const box = document.createElement('div'); box.className = 'box rounded-lg mb-2 p-3'; box.contentEditable = true; box.spellcheck = true;
+      const box = document.createElement('div'); box.className = 'box mb-2 p-3'; box.contentEditable = true; box.spellcheck = true;
       box.addEventListener('paste', e => { e.preventDefault(); const t = (e.clipboardData||window.clipboardData).getData('text'); document.execCommand('insertText', false, t); });
 
       const chips = document.createElement('div'); chips.className = 'flex flex-wrap gap-2 text-xs items-center';
